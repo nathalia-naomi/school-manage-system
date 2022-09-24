@@ -12,6 +12,11 @@ public class Teacher {
     private LocalDate birthDate;
     private HashSet<Subject> subjects;
 
+    public Teacher(String firstName, String lastName) {
+        setFirstName(firstName);
+        setLastName(lastName);
+    }
+
     public Teacher(String firstName, String lastName, String cpf, String email, LocalDate birthDate, HashSet<Subject> subjects) {
         setFirstName(firstName);
         setLastName(lastName);
@@ -35,10 +40,6 @@ public class Teacher {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getWholeName() {
-        return firstName + " " + lastName;
     }
 
     public String getCpf() {
@@ -73,10 +74,8 @@ public class Teacher {
         this.subjects = subjects;
     }
 
-    public void addSubjects(HashSet<Subject> subjects) {
-        for (Subject subject : subjects) {
-            this.subjects.add(subject);
-        }
+    public void addSubject(Subject subject) {
+        this.subjects.add(subject);
     }
 
 }

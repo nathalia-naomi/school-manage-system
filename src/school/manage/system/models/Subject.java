@@ -6,6 +6,12 @@ public class Subject {
     private String name;
     private Teacher teacher;
 
+    public Subject(Integer id, String name) {
+        setId(id);
+        setName(name);
+        setTeacher(new Teacher("", ""));
+    }
+
     public Subject(Integer id, String name, Teacher teacher) {
         setId(id);
         setName(name);
@@ -34,5 +40,10 @@ public class Subject {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Subject:: [%d] %s", id, name);
     }
 }

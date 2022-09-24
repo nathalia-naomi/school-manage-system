@@ -5,11 +5,13 @@ import school.manage.system.models.Grade;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import static test.school.manage.system.TestUtils.separator;
+import static test.school.manage.system.TestUtils.testPassedOrFailed;
+import static test.school.manage.system.TestUtils.validation;
+
 public class TestGradeClass {
 
-    public static final String separator = "--------------------------------------------------------------------------";
-    private static Double average;
-    private static LinkedHashMap<String, Double> expectedGrade = new LinkedHashMap<>();
+    private static final LinkedHashMap<String, Double> expectedGrade = new LinkedHashMap<>();
 
     public static void setExpectedGrade(Double first, Double second, Double third, Double fourth) {
 
@@ -18,27 +20,8 @@ public class TestGradeClass {
         expectedGrade.put("Third", third);
         expectedGrade.put("Fourth", fourth);
 
-        average = (first + second + third + fourth) / 4;
+        Double average = (first + second + third + fourth) / 4;
         expectedGrade.put("Average", average);
-    }
-
-    public static void testPassedOrFailed(Boolean validation) {
-
-        if (validation) {
-            System.out.println("## Test passed");
-        } else System.out.println("## Test failed");
-    }
-
-    public static boolean validation(Double value, Double expected) {
-
-        if (!(value.equals(expected))) {
-            System.out.println("## Values do not match");
-            System.out.println("## Expected: " + expected + " - Value: " + value);
-            return false;
-        } else {
-            System.out.println("## Values match");
-            return true;
-        }
     }
 
     public static void validateGrade(Grade grade) {

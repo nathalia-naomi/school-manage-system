@@ -2,7 +2,7 @@ package school.manage.system.models;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 
 public class Student {
 
@@ -11,10 +11,19 @@ public class Student {
     private String cpf;
     private String email;
     private LocalDate birthDate;
-    private List<Subject> subjects;
-    private HashMap<Subject, Grade> reportCard;
+    private HashSet<Subject> subjects;
+    private HashMap<Subject, Grade> reportCard = new HashMap<>();
 
-    public Student(String firstName, String lastName, String cpf, String email, LocalDate birthDate, List<Subject> subjects) {
+    public Student(String firstName, String cpf) {
+        setFirstName(firstName);
+        setLastName("");
+        setCpf(cpf);
+        setEmail("");
+        setSubjects(new HashSet<Subject>());
+        generateReportCard(new HashSet<Subject>());
+    }
+
+    public Student(String firstName, String lastName, String cpf, String email, LocalDate birthDate, HashSet<Subject> subjects) {
         setFirstName(firstName);
         setLastName(lastName);
         setCpf(cpf);
@@ -64,21 +73,50 @@ public class Student {
         this.birthDate = birthDate;
     }
 
-    public List<Subject> getSubjects() {
+    public HashSet<Subject> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(List<Subject> subjects) {
+    public void setSubjects(HashSet<Subject> subjects) {
         this.subjects = subjects;
+        updateReportCard();
+    }
+
+    public void enrollment(Subject newSubject) {
+        subjects.add(newSubject);
+        updateReportCard();
+    }
+
+    public void unenrollment(Subject canceledSubject) {
+        subjects.remove(canceledSubject);
+        updateReportCard();
     }
 
     public HashMap<Subject, Grade> getReportCard() {
         return reportCard;
     }
 
-    private void generateReportCard(List<Subject> subjects) {
+    private void generateReportCard(HashSet<Subject> subjects) {
         for (Subject subject : subjects) {
             reportCard.put(subject, new Grade());
+        }
+    }
+
+    public void updateReportCard() {
+        for (Subject subject : subjects) {
+            if (reportCard.get(subject) == null) {
+                reportCard.put(subject, new Grade());
+            }
+        }
+
+        for (Subject enrolledSubject : reportCard.keySet()) {
+            System.out.println(reportCard.keySet());
+            System.out.println(enrolledSubject);
+            System.out.println(subjects);
+
+            if (!subjects.contains(enrolledSubject)) {
+                reportCard.remove(enrolledSubject);
+            }
         }
     }
 }

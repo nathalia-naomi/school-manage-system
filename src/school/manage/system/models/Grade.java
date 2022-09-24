@@ -79,12 +79,10 @@ public class Grade {
         return grades.get("Average");
     }
 
-    public void printGradeInfo() {
-        System.out.println("First:\t" + getFirst());
-        System.out.println("Second:\t" + getSecond());
-        System.out.println("Third:\t" + getThird());
-        System.out.println("Fourth:\t" + getFourth());
-        System.out.println("Average:\t" + getAverage());
+    @Override
+    public String toString() {
+        return String.format("| First | Second | Third | Fourth | Average | \n" +
+                "| %4s  |%6s  |%5s  |%6s  |%6s   |", getFirst(), getSecond(), getThird(), getFourth(), getAverage());
     }
 
 }
