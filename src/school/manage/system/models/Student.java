@@ -6,26 +6,23 @@ import java.util.HashSet;
 
 public class Student {
 
-    private String firstName;
-    private String lastName;
+    private String name;
     private String cpf;
     private String email;
     private LocalDate birthDate;
     private HashSet<Subject> subjects;
     private HashMap<Subject, Grade> reportCard = new HashMap<>();
 
-    public Student(String firstName, String cpf) {
-        setFirstName(firstName);
-        setLastName("");
+    public Student(String name, String cpf) {
+        setName(name);
         setCpf(cpf);
         setEmail("");
         setSubjects(new HashSet<Subject>());
         generateReportCard(new HashSet<Subject>());
     }
 
-    public Student(String firstName, String lastName, String cpf, String email, LocalDate birthDate, HashSet<Subject> subjects) {
-        setFirstName(firstName);
-        setLastName(lastName);
+    public Student(String name, String cpf, String email, LocalDate birthDate, HashSet<Subject> subjects) {
+        setName(name);
         setCpf(cpf);
         setEmail(email);
         setBirthDate(birthDate);
@@ -33,20 +30,12 @@ public class Student {
         generateReportCard(subjects);
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCpf() {
@@ -110,10 +99,6 @@ public class Student {
         }
 
         for (Subject enrolledSubject : reportCard.keySet()) {
-            System.out.println(reportCard.keySet());
-            System.out.println(enrolledSubject);
-            System.out.println(subjects);
-
             if (!subjects.contains(enrolledSubject)) {
                 reportCard.remove(enrolledSubject);
             }
