@@ -1,45 +1,33 @@
 package school.manage.system.models;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 
 public class Teacher {
 
-    private String firstName;
-    private String lastName;
+    private String name;
     private String cpf;
     private String email;
     private LocalDate birthDate;
-    private HashSet<Subject> subjects;
 
-    public Teacher(String firstName, String lastName) {
-        setFirstName(firstName);
-        setLastName(lastName);
+    public Teacher(String name, String cpf) {
+        setName(name);
+        setCpf(cpf);
+        setEmail("");
     }
 
-    public Teacher(String firstName, String lastName, String cpf, String email, LocalDate birthDate, HashSet<Subject> subjects) {
-        setFirstName(firstName);
-        setLastName(lastName);
+    public Teacher(String name, String cpf, String email, LocalDate birthDate) {
+        setName(name);
         setCpf(cpf);
         setEmail(email);
         setBirthDate(birthDate);
-        setSubjects(subjects);
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCpf() {
@@ -64,18 +52,6 @@ public class Teacher {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
-    }
-
-    public HashSet<Subject> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(HashSet<Subject> subjects) {
-        this.subjects = subjects;
-    }
-
-    public void addSubject(Subject subject) {
-        this.subjects.add(subject);
     }
 
 }
